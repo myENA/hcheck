@@ -1,5 +1,5 @@
-hash: 4a9c01b7cd038eb530adafca5e8e1038654f23017da6bb797dcbfda057393872
-updated: 2018-06-01T14:27:09.00504-05:00
+hash: 9fc16957a570f59f178a788231245a146d633ee72f116a18d17f765aad8a4639
+updated: 2018-06-01T15:24:52.295596-05:00
 imports:
 - name: github.com/armon/go-radix
   version: 1fca145dffbcaa8fe914309b1ec0cfc67500fe61
@@ -19,12 +19,18 @@ imports:
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/mitchellh/cli
   version: c48282d14eba4b0817ddef3f832ff8d13851aefd
+- name: github.com/nathanejohnson/intransport
+  version: 4e02fb209e756018ce187d36c3c938857924ec96
 - name: github.com/posener/complete
   version: e037c22b2fcfa85e74495388f03892ed194bba76
   subpackages:
   - cmd
   - cmd/install
   - match
+- name: golang.org/x/crypto
+  version: 5ba7f63082460102a45837dbd1827e10f9479ac0
+  subpackages:
+  - ocsp
 - name: golang.org/x/sys
   version: c11f84a56e43e20a78cee75a7c034031ecf57d1f
   subpackages:

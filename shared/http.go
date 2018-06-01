@@ -5,13 +5,13 @@ import (
 	"net/http"
 	"time"
 
-	// hashicorp's handy http client wrapper
+	// http transport/client wrappers
 	"github.com/hashicorp/go-cleanhttp"
+	"github.com/nathanejohnson/intransport"
 )
 
 // HTTPCode returns the http code of requested url
 func HTTPCode(url string, timeout time.Duration, insecure bool) (int, error) {
-	var transport = cleanhttp.DefaultTransport()
 	var client *http.Client
 	var request *http.Request
 	var response *http.Response
@@ -22,18 +22,26 @@ func HTTPCode(url string, timeout time.Duration, insecure bool) (int, error) {
 		return 0, err
 	}
 
-	// modify transport as needed
 	if insecure {
+		// init client using default clean transport
+		// and disable certificate verification
+		transport := cleanhttp.DefaultTransport()
 		transport.TLSClientConfig = &tls.Config{
 			InsecureSkipVerify: true,
 		}
+		client = &http.Client{
+			Transport: transport,
+		}
+	} else {
+		// init client using intransport library to automatically
+		// fetch intermediate certificates and validate the chain and
+		// verify stapled OCSP responses if certificates are marked
+		// as must staple
+		client = intransport.NewInTransportHTTPClient(nil)
 	}
 
-	// build client with transport and timeout
-	client = &http.Client{
-		Transport: transport,
-		Timeout:   timeout,
-	}
+	// set timeout
+	client.Timeout = timeout
 
 	// execute request
 	if response, err = client.Do(request); err != nil {
