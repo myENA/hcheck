@@ -1,0 +1,4 @@
+package: github.com/myENA/hcheck
+import:
+- package: github.com/hashicorp/go-cleanhttp
+- package: github.com/mitchellh/cli
