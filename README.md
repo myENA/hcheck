@@ -7,6 +7,9 @@
 
 This repo povides a very simple tool called `hcheck` that will check the HTTP return code of a given URL and verify it matches your expected code.  This tool is useful to ensure expected results when ran in parrallel with load testing activity.  The tool can operate in a one-and-done mode or consistently polling in the foreground and logging any unexpected result.
 
+In addition to checking, we use [nathanejohnson/intransport](https://github.com/nathanejohnson/intransport) when fetching secure resources to
+automatically fetch intermediate certificates and do full chain verification including stapled OCSP responses.
+
 ## Installing
 
 Users with a proper Go environment (1.8+ required) ...

@@ -35,7 +35,7 @@ func HTTPCode(url string, timeout time.Duration, insecure bool) (int, error) {
 	} else {
 		// init client using intransport library to automatically
 		// fetch intermediate certificates and validate the chain and
-		// verify stapled OCSP responses if certificates are marked
+		// stapled OCSP responses if certificates are marked
 		// as must staple
 		client = intransport.NewInTransportHTTPClient(nil)
 	}
